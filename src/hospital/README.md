@@ -40,8 +40,9 @@ src/
     │       ├── MedicoEspecialista.java
     │       └── MedicoEstudiante.java
     └── Main.java
+```
 
-
+---
 
 ## 🔌 Interfaces
 
@@ -227,6 +228,5 @@ Characters  ──────► Paciente              Medico
 ---
 
 ## 👩‍💻 Autora
-María Perez** · Desarrollo de Software · Marzo 2026
 
-
+**María Perez** · Desarrollo de Software · Marzo 2026
