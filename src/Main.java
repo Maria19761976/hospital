@@ -8,7 +8,7 @@ import hospital.modelo.pacientes.PacienteConsulta;
 public class Main {
     public static void main(String[] args) {
 
-        // --- 2 PacienteConsulta ---
+
         PacienteConsulta pacienteConsulta1 = new PacienteConsulta(
                 "Laura","García", 34, "12345678A", "600111222",
                 "HC-001","2025-03-01","Sanitas",
@@ -20,7 +20,6 @@ public class Main {
                 "Control tensión","Tarde","Dra. Ruiz","2025-03-20"
         );
 
-        // --- 2 PacienteAmbulancia ---
         PacienteAmbulancia pacienteAmbulancia1 = new PacienteAmbulancia(
                 "Mario","Fernández", 62, "11223344C", "600555666",
                 "HC-003","2025-03-03","Adeslas",
@@ -32,7 +31,7 @@ public class Main {
                 "Fractura fémur",2,"Dr. Vega", true
         );
 
-        // --- 2 MedicoEspecialista ---
+
         MedicoEspecialista medicoEspecialista1 = new MedicoEspecialista(
                 "Pedro","Torres", 45, "55667788E", "600999000",
                 "MAT-001","Cardiología", 40,
@@ -44,7 +43,7 @@ public class Main {
                 "Traumatología", 28, 10
         );
 
-        // --- 2 MedicoEstudiante ---
+
         MedicoEstudiante medicoEstudiante1 = new MedicoEstudiante(
                 "Juan","Ramírez", 24, "99887766G", "601222333",
                 "EST-001","Urgencias", 20,
@@ -56,7 +55,6 @@ public class Main {
                 35,"Fisiología","Universidad de Salamanca", 3
         );
 
-        // --- IMPRIMIR TODO ---
         System.out.println("\n========== PACIENTES CONSULTA ==========");
         pacienteConsulta1.imprimir();
         pacienteConsulta2.imprimir();
