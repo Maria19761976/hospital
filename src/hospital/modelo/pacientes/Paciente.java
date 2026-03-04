@@ -26,4 +26,6 @@ public abstract class Paciente extends Characters implements IAtendible {
     public void setNumeroHistorialMedico(String numeroHistorialMedico) { this.numeroHistorialMedico = numeroHistorialMedico; }
     public void setFechaIngresoPaciente(String fechaIngresoPaciente)   { this.fechaIngresoPaciente = fechaIngresoPaciente; }
     public void setSeguroMedicoPaciente(String seguroMedicoPaciente)   { this.seguroMedicoPaciente = seguroMedicoPaciente; }
+
+    public abstract void imprimir();
 }
