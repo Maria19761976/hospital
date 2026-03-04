@@ -230,16 +230,3 @@ Characters  ──────► Paciente              Medico
 ## 👩‍💻 Autora
 
 **María Perez** · Desarrollo de Software · Marzo 2026
-```
-
----
-
-Para usarlo:
-
-1. Abre `README.md` en IntelliJ
-2. Selecciona todo con `Ctrl + A`
-3. Pega con `Ctrl + V`
-4. Guarda con `Ctrl + S`
-5. Commit:
-```
-docs: README completo del proyecto
