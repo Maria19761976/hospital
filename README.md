@@ -1,44 +1,44 @@
 # 🏥 Hospital Java
 
-> Sistema de Gestión Hospitalaria desarrollado en Java aplicando los 4 pilares de la POO y los principios SOLID.
+> Hospital Management System developed in Java applying the 4 pillars of OOP and SOLID principles.
 
 ![Java](https://img.shields.io/badge/Java-17-orange)
-![POO](https://img.shields.io/badge/POO-4%20pilares-blue)
-![SOLID](https://img.shields.io/badge/SOLID-5%20principios-green)
+![OOP](https://img.shields.io/badge/OOP-4%20pillars-blue)
+![SOLID](https://img.shields.io/badge/SOLID-5%20principles-green)
 
 ---
 
-## 📋 Descripción
+## 📋 Description
 
-Este proyecto simula el funcionamiento de un hospital con pacientes y médicos.
-Modela el ciclo completo de atención hospitalaria aplicando:
+This project simulates the operation of a hospital with patients and doctors.
+It models the complete hospital care cycle applying:
 
-- **Encapsulamiento** — atributos `private` con getters y setters
-- **Herencia** — jerarquía de 3 niveles
-- **Polimorfismo** — `imprimir()` distinto en cada clase
-- **Abstracción** — clases abstractas e interfaces
+- **Encapsulation** — `private` attributes with getters and setters
+- **Inheritance** — 3-level hierarchy
+- **Polymorphism** — `print()` produces different output in each class
+- **Abstraction** — abstract classes and interfaces
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 ```
 src/
 └── hospital/
     ├── interfaces/
     │   ├── IPrintable.java
-    │   ├── IAtendible.java
-    │   └── IMedico.java
-    ├── modelo/
-    │   ├── personajes/
+    │   ├── IAttendable.java
+    │   └── IDoctor.java
+    ├── model/
+    │   ├── characters/
     │   │   └── Characters.java
-    │   ├── pacientes/
-    │   │   ├── Paciente.java
-    │   │   ├── PacienteConsulta.java
-    │   │   └── PacienteAmbulancia.java
-    │   └── medicos/
-    │       ├── Medico.java
-    │       ├── MedicoEspecialista.java
-    │       └── MedicoEstudiante.java
+    │   ├── patients/
+    │   │   ├── Patient.java
+    │   │   ├── ConsultationPatient.java
+    │   │   └── AmbulancePatient.java
+    │   └── doctors/
+    │       ├── Doctor.java
+    │       ├── SpecialistDoctor.java
+    │       └── StudentDoctor.java
     └── Main.java
 ```
 
@@ -47,186 +47,186 @@ src/
 ## 🔌 Interfaces
 
 ### `IPrintable`
-Contrato de impresión universal para cualquier entidad del sistema.
+Universal print contract for any entity in the system.
 
-| Método | Retorno |
-|--------|---------|
-| `imprimir()` | `void` |
+| Method | Return |
+|--------|--------|
+| `print()` | `void` |
 
 ---
 
-### `IAtendible`
-Define el flujo completo de atención de un paciente.
+### `IAttendable`
+Defines the complete patient care workflow.
 
-| Método | Descripción |
+| Method | Description |
 |--------|-------------|
-| `admision()` | Registra la entrada del paciente |
-| `habitacion()` | Asigna sala o habitación |
-| `tratamiento()` | Aplica el tratamiento médico |
-| `salida()` | Gestiona el alta del paciente |
+| `admission()` | Registers patient entry |
+| `ward()` | Assigns room or ward |
+| `treatment()` | Applies medical treatment |
+| `discharge()` | Manages patient discharge |
 
 ---
 
-### `IMedico`
-Define el comportamiento laboral básico de cualquier médico.
+### `IDoctor`
+Defines the basic work behaviour of any doctor.
 
-| Método | Descripción |
+| Method | Description |
 |--------|-------------|
-| `horasDeTrabajoSemana()` | Muestra las horas trabajadas por semana |
-| `comer()` | Representa el descanso para comer |
+| `weeklyWorkHours()` | Displays weekly hours worked |
+| `eat()` | Represents meal break |
 
 ---
 
-## 👑 Superclase — `Characters`
+## 👑 Superclass — `Characters`
 
-Clase madre de todo el sistema. Contiene los atributos comunes a cualquier persona.
-Implementa `IPrintable`. Es **abstracta** — no se puede instanciar directamente.
+Root class of the entire system. Contains attributes common to any person.
+Implements `IPrintable`. It is **abstract** — cannot be instantiated directly.
 
-| Atributo `private` | Tipo | Getter / Setter |
-|--------------------|------|-----------------|
-| `nombrePersona` | `String` | ✅ |
-| `apellidoPersona` | `String` | ✅ |
-| `edadPersona` | `int` | ✅ |
-| `dniPersona` | `String` | ✅ |
-| `telefonoPersona` | `String` | ✅ |
-
----
-
-## 🔷 Clases Abstractas
-
-### `Paciente`
-> Extiende `Characters` · Implementa `IAtendible`
-
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `numeroHistorialMedico` | `String` | Número identificador del historial |
-| `fechaIngresoPaciente` | `String` | Fecha de ingreso al hospital |
-| `seguroMedicoPaciente` | `String` | Compañía de seguro médico |
+| `private` Attribute | Type | Getter / Setter |
+|---------------------|------|-----------------|
+| `firstName` | `String` | ✅ |
+| `lastName` | `String` | ✅ |
+| `age` | `int` | ✅ |
+| `dni` | `String` | ✅ |
+| `phone` | `String` | ✅ |
 
 ---
 
-### `Medico`
-> Extiende `Characters` · Implementa `IMedico`
+## 🔷 Abstract Classes
 
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `matriculaMedico` | `String` | Número de matrícula profesional |
-| `departamentoMedico` | `String` | Departamento hospitalario asignado |
-| `horasSemanaMedico` | `int` | Horas de trabajo semanales |
+### `Patient`
+> Extends `Characters` · Implements `IAttendable`
 
----
-
-## 🟣 Clases Concretas
-
-### `PacienteConsulta`
-> Extiende `Paciente`
-
-Paciente que llega por cita programada. Al alta, agenda una próxima cita.
-
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `motivoConsultaPaciente` | `String` | Razón principal de la visita |
-| `turnoPaciente` | `String` | Turno: mañana o tarde |
-| `medicoAsignadoPaciente` | `String` | Médico que le atiende |
-| `proximaCitaPaciente` | `String` | Fecha de la próxima revisión |
-
-**Flujo:** `admision()` → `controlEnfermera()` → `habitacion()` → `tratamiento()` → `proximaCita()` → `salida()`
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `medicalRecordNumber` | `String` | Medical record identifier |
+| `admissionDate` | `String` | Hospital admission date |
+| `medicalInsurance` | `String` | Medical insurance company |
 
 ---
 
-### `PacienteAmbulancia`
-> Extiende `Paciente`
+### `Doctor`
+> Extends `Characters` · Implements `IDoctor`
 
-Paciente de emergencia. Puede requerir operación y rehabilitación posterior.
-
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `tipoEmergenciaPaciente` | `String` | Tipo de emergencia médica |
-| `nivelUrgenciaPaciente` | `int` | Nivel de urgencia (1 = crítico) |
-| `cirujanoAsignadoPaciente` | `String` | Cirujano responsable |
-| `requiereRehabPaciente` | `boolean` | Necesita rehabilitación posterior |
-
-**Flujo:** `admision()` → `operacion()` → `habitacion()` → `tratamiento()` → `rehabilitacion()` → `salida()`
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `licenseNumber` | `String` | Professional license number |
+| `department` | `String` | Assigned hospital department |
+| `weeklyHours` | `int` | Weekly working hours |
 
 ---
 
-### `MedicoEspecialista`
-> Extiende `Medico`
+## 🟣 Concrete Classes
 
-Médico con especialidad definida y experiencia acreditada.
+### `ConsultationPatient`
+> Extends `Patient`
 
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `especialidadMedico` | `String` | Área de especialización |
-| `diasVacacionesMedico` | `int` | Días de vacaciones anuales |
-| `aniosExperienciaMedico` | `int` | Años de experiencia |
+Patient arriving for a scheduled appointment. On discharge, books a follow-up appointment.
 
-**Métodos:** `horasDeTrabajoSemana()` · `especialidad()` · `vacaciones()` · `comer()` · `imprimir()`
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `consultationReason` | `String` | Main reason for the visit |
+| `shift` | `String` | Shift: morning or afternoon |
+| `assignedDoctor` | `String` | Attending doctor |
+| `nextAppointment` | `String` | Next review date |
 
----
-
-### `MedicoEstudiante`
-> Extiende `Medico`
-
-Médico en formación que compagina guardia hospitalaria con estudios universitarios.
-
-| Atributo `private` | Tipo | Descripción |
-|--------------------|------|-------------|
-| `horasEstudioSemanaMedico` | `int` | Horas de estudio por semana |
-| `cursoActualMedico` | `String` | Asignatura que está cursando |
-| `universidadMedico` | `String` | Universidad de origen |
-| `anioCarreraMedico` | `int` | Año en curso de la carrera |
-
-**Métodos:** `horasDeTrabajoSemana()` · `horasEstudioPorSemana()` · `cursoActual()` · `comer()` · `imprimir()`
+**Flow:** `admission()` → `nurseCheck()` → `ward()` → `treatment()` → `showNextAppointment()` → `discharge()`
 
 ---
 
-## 🔗 Jerarquía de Herencia
+### `AmbulancePatient`
+> Extends `Patient`
+
+Emergency patient. May require surgery and subsequent rehabilitation.
+
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `emergencyType` | `String` | Type of medical emergency |
+| `urgencyLevel` | `int` | Urgency level (1 = critical) |
+| `assignedSurgeon` | `String` | Responsible surgeon |
+| `requiresRehabilitation` | `boolean` | Needs follow-up rehabilitation |
+
+**Flow:** `admission()` → `operation()` → `ward()` → `treatment()` → `rehabilitation()` → `discharge()`
+
+---
+
+### `SpecialistDoctor`
+> Extends `Doctor`
+
+Doctor with a defined specialty and accredited experience.
+
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `specialty` | `String` | Area of specialisation |
+| `vacationDays` | `int` | Annual vacation days |
+| `yearsOfExperience` | `int` | Years of experience |
+
+**Methods:** `weeklyWorkHours()` · `showSpecialty()` · `vacation()` · `eat()` · `print()`
+
+---
+
+### `StudentDoctor`
+> Extends `Doctor`
+
+Doctor in training balancing hospital shifts with university studies.
+
+| `private` Attribute | Type | Description |
+|---------------------|------|-------------|
+| `weeklyStudyHours` | `int` | Study hours per week |
+| `currentCourse` | `String` | Subject currently enrolled in |
+| `university` | `String` | University of origin |
+| `careerYear` | `int` | Current year of degree |
+
+**Methods:** `weeklyWorkHours()` · `showWeeklyStudyHours()` · `showCurrentCourse()` · `eat()` · `print()`
+
+---
+
+## 🔗 Inheritance Hierarchy
 ```
-IPrintable          IAtendible              IMedico
-    ▲                   ▲                      ▲
-    │                   │                      │
-Characters  ──────► Paciente              Medico
-(superclase)           △        △            △          △
-               PacienteConsulta  PacienteAmbulancia
-                              MedicoEspecialista  MedicoEstudiante
+IPrintable          IAttendable              IDoctor
+    ▲                   ▲                       ▲
+    │                   │                       │
+Characters  ──────► Patient                  Doctor
+(superclass)            △           △            △             △
+              ConsultationPatient  AmbulancePatient
+                                SpecialistDoctor  StudentDoctor
 ```
 
 ---
 
-## ⚙️ Pilares POO
+## ⚙️ OOP Pillars
 
-| Pilar | Aplicación |
-|-------|------------|
-| **Encapsulamiento** | Todos los atributos son `private`. Acceso exclusivo vía getters y setters |
-| **Herencia** | 3 niveles: `Characters` → `Paciente`/`Medico` → clases concretas |
-| **Polimorfismo** | `imprimir()` produce resultados distintos en cada clase concreta |
-| **Abstracción** | Clases abstractas e interfaces definen contratos sin implementación |
-
----
-
-## 🏆 Principios SOLID
-
-| Sigla | Principio | Aplicación |
-|-------|-----------|------------|
-| **S** | Single Responsibility | Cada clase tiene una única responsabilidad |
-| **O** | Open / Closed | Abierto a extensión sin modificar lo existente |
-| **L** | Liskov Substitution | Las subclases sustituyen a sus clases padre sin romper el sistema |
-| **I** | Interface Segregation | Interfaces pequeñas y específicas por responsabilidad |
-| **D** | Dependency Inversion | `Main.java` depende de abstracciones, no de implementaciones |
+| Pillar | Application |
+|--------|-------------|
+| **Encapsulation** | All attributes are `private`. Access exclusively via getters and setters |
+| **Inheritance** | 3 levels: `Characters` → `Patient`/`Doctor` → concrete classes |
+| **Polymorphism** | `print()` produces different output in each concrete class |
+| **Abstraction** | Abstract classes and interfaces define contracts without implementation |
 
 ---
 
-## ▶️ Cómo Ejecutar
+## 🏆 SOLID Principles
 
-1. Abrir el proyecto en **IntelliJ IDEA**
-2. Verificar JDK configurado **(Java 17 o superior)**
-3. Marcar `src` como **Sources Root**
-4. Ejecutar `Main.java`
-5. La consola mostrará los datos de los **8 objetos instanciados**
+| Letter | Principle | Application |
+|--------|-----------|-------------|
+| **S** | Single Responsibility | Each class has a single responsibility |
+| **O** | Open / Closed | Open for extension without modifying existing code |
+| **L** | Liskov Substitution | Subclasses substitute their parent classes without breaking the system |
+| **I** | Interface Segregation | Small, specific interfaces per responsibility |
+| **D** | Dependency Inversion | `Main.java` depends on abstractions, not on implementations |
 
 ---
 
-## 👩‍💻 Autora
+## ▶️ How to Run
 
-**María Perez** · Desarrollo de Software · Marzo 2026
+1. Open the project in **IntelliJ IDEA**
+2. Verify the JDK is configured **(Java 17 or higher)**
+3. Mark `src` as **Sources Root**
+4. Run `Main.java`
+5. The console will display the data of the **8 instantiated objects**
+
+---
+
+## 👩‍💻 Author
+
+**María Perez** · Software Development · March 2026

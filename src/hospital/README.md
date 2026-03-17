@@ -15,7 +15,7 @@ Modela el ciclo completo de atención hospitalaria aplicando:
 
 - **Encapsulamiento** — atributos `private` con getters y setters
 - **Herencia** — jerarquía de 3 niveles
-- **Polimorfismo** — `imprimir()` distinto en cada clase
+- **Polimorfismo** — `print()` distinto en cada clase
 - **Abstracción** — clases abstractas e interfaces
 
 ---
@@ -26,19 +26,19 @@ src/
 └── hospital/
     ├── interfaces/
     │   ├── IPrintable.java
-    │   ├── IAtendible.java
-    │   └── IMedico.java
-    ├── modelo/
-    │   ├── personajes/
+    │   ├── IAttendable.java
+    │   └── IDoctor.java
+    ├── model/
+    │   ├── characters/
     │   │   └── Characters.java
-    │   ├── pacientes/
-    │   │   ├── Paciente.java
-    │   │   ├── PacienteConsulta.java
-    │   │   └── PacienteAmbulancia.java
-    │   └── medicos/
-    │       ├── Medico.java
-    │       ├── MedicoEspecialista.java
-    │       └── MedicoEstudiante.java
+    │   ├── patients/
+    │   │   ├── Patient.java
+    │   │   ├── ConsultationPatient.java
+    │   │   └── AmbulancePatient.java
+    │   └── doctors/
+    │       ├── Doctor.java
+    │       ├── SpecialistDoctor.java
+    │       └── StudentDoctor.java
     └── Main.java
 ```
 
@@ -51,29 +51,29 @@ Contrato de impresión universal para cualquier entidad del sistema.
 
 | Método | Retorno |
 |--------|---------|
-| `imprimir()` | `void` |
+| `print()` | `void` |
 
 ---
 
-### `IAtendible`
+### `IAttendable`
 Define el flujo completo de atención de un paciente.
 
 | Método | Descripción |
 |--------|-------------|
-| `admision()` | Registra la entrada del paciente |
-| `habitacion()` | Asigna sala o habitación |
-| `tratamiento()` | Aplica el tratamiento médico |
-| `salida()` | Gestiona el alta del paciente |
+| `admission()` | Registra la entrada del paciente |
+| `ward()` | Asigna sala o habitación |
+| `treatment()` | Aplica el tratamiento médico |
+| `discharge()` | Gestiona el alta del paciente |
 
 ---
 
-### `IMedico`
+### `IDoctor`
 Define el comportamiento laboral básico de cualquier médico.
 
 | Método | Descripción |
 |--------|-------------|
-| `horasDeTrabajoSemana()` | Muestra las horas trabajadas por semana |
-| `comer()` | Representa el descanso para comer |
+| `weeklyWorkHours()` | Muestra las horas trabajadas por semana |
+| `eat()` | Representa el descanso para comer |
 
 ---
 
@@ -84,112 +84,112 @@ Implementa `IPrintable`. Es **abstracta** — no se puede instanciar directament
 
 | Atributo `private` | Tipo | Getter / Setter |
 |--------------------|------|-----------------|
-| `nombrePersona` | `String` | ✅ |
-| `apellidoPersona` | `String` | ✅ |
-| `edadPersona` | `int` | ✅ |
-| `dniPersona` | `String` | ✅ |
-| `telefonoPersona` | `String` | ✅ |
+| `firstName` | `String` | ✅ |
+| `lastName` | `String` | ✅ |
+| `age` | `int` | ✅ |
+| `dni` | `String` | ✅ |
+| `phone` | `String` | ✅ |
 
 ---
 
 ## 🔷 Clases Abstractas
 
-### `Paciente`
-> Extiende `Characters` · Implementa `IAtendible`
+### `Patient`
+> Extiende `Characters` · Implementa `IAttendable`
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `numeroHistorialMedico` | `String` | Número identificador del historial |
-| `fechaIngresoPaciente` | `String` | Fecha de ingreso al hospital |
-| `seguroMedicoPaciente` | `String` | Compañía de seguro médico |
+| `medicalRecordNumber` | `String` | Número identificador del historial |
+| `admissionDate` | `String` | Fecha de ingreso al hospital |
+| `medicalInsurance` | `String` | Compañía de seguro médico |
 
 ---
 
-### `Medico`
-> Extiende `Characters` · Implementa `IMedico`
+### `Doctor`
+> Extiende `Characters` · Implementa `IDoctor`
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `matriculaMedico` | `String` | Número de matrícula profesional |
-| `departamentoMedico` | `String` | Departamento hospitalario asignado |
-| `horasSemanaMedico` | `int` | Horas de trabajo semanales |
+| `licenseNumber` | `String` | Número de matrícula profesional |
+| `department` | `String` | Departamento hospitalario asignado |
+| `weeklyHours` | `int` | Horas de trabajo semanales |
 
 ---
 
 ## 🟣 Clases Concretas
 
-### `PacienteConsulta`
-> Extiende `Paciente`
+### `ConsultationPatient`
+> Extiende `Patient`
 
 Paciente que llega por cita programada. Al alta, agenda una próxima cita.
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `motivoConsultaPaciente` | `String` | Razón principal de la visita |
-| `turnoPaciente` | `String` | Turno: mañana o tarde |
-| `medicoAsignadoPaciente` | `String` | Médico que le atiende |
-| `proximaCitaPaciente` | `String` | Fecha de la próxima revisión |
+| `consultationReason` | `String` | Razón principal de la visita |
+| `shift` | `String` | Turno: mañana o tarde |
+| `assignedDoctor` | `String` | Médico que le atiende |
+| `nextAppointment` | `String` | Fecha de la próxima revisión |
 
-**Flujo:** `admision()` → `controlEnfermera()` → `habitacion()` → `tratamiento()` → `proximaCita()` → `salida()`
+**Flujo:** `admission()` → `nurseCheck()` → `ward()` → `treatment()` → `showNextAppointment()` → `discharge()`
 
 ---
 
-### `PacienteAmbulancia`
-> Extiende `Paciente`
+### `AmbulancePatient`
+> Extiende `Patient`
 
 Paciente de emergencia. Puede requerir operación y rehabilitación posterior.
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `tipoEmergenciaPaciente` | `String` | Tipo de emergencia médica |
-| `nivelUrgenciaPaciente` | `int` | Nivel de urgencia (1 = crítico) |
-| `cirujanoAsignadoPaciente` | `String` | Cirujano responsable |
-| `requiereRehabPaciente` | `boolean` | Necesita rehabilitación posterior |
+| `emergencyType` | `String` | Tipo de emergencia médica |
+| `urgencyLevel` | `int` | Nivel de urgencia (1 = crítico) |
+| `assignedSurgeon` | `String` | Cirujano responsable |
+| `requiresRehabilitation` | `boolean` | Necesita rehabilitación posterior |
 
-**Flujo:** `admision()` → `operacion()` → `habitacion()` → `tratamiento()` → `rehabilitacion()` → `salida()`
+**Flujo:** `admission()` → `operation()` → `ward()` → `treatment()` → `rehabilitation()` → `discharge()`
 
 ---
 
-### `MedicoEspecialista`
-> Extiende `Medico`
+### `SpecialistDoctor`
+> Extiende `Doctor`
 
 Médico con especialidad definida y experiencia acreditada.
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `especialidadMedico` | `String` | Área de especialización |
-| `diasVacacionesMedico` | `int` | Días de vacaciones anuales |
-| `aniosExperienciaMedico` | `int` | Años de experiencia |
+| `specialty` | `String` | Área de especialización |
+| `vacationDays` | `int` | Días de vacaciones anuales |
+| `yearsOfExperience` | `int` | Años de experiencia |
 
-**Métodos:** `horasDeTrabajoSemana()` · `especialidad()` · `vacaciones()` · `comer()` · `imprimir()`
+**Métodos:** `weeklyWorkHours()` · `showSpecialty()` · `vacation()` · `eat()` · `print()`
 
 ---
 
-### `MedicoEstudiante`
-> Extiende `Medico`
+### `StudentDoctor`
+> Extiende `Doctor`
 
 Médico en formación que compagina guardia hospitalaria con estudios universitarios.
 
 | Atributo `private` | Tipo | Descripción |
 |--------------------|------|-------------|
-| `horasEstudioSemanaMedico` | `int` | Horas de estudio por semana |
-| `cursoActualMedico` | `String` | Asignatura que está cursando |
-| `universidadMedico` | `String` | Universidad de origen |
-| `anioCarreraMedico` | `int` | Año en curso de la carrera |
+| `weeklyStudyHours` | `int` | Horas de estudio por semana |
+| `currentCourse` | `String` | Asignatura que está cursando |
+| `university` | `String` | Universidad de origen |
+| `careerYear` | `int` | Año en curso de la carrera |
 
-**Métodos:** `horasDeTrabajoSemana()` · `horasEstudioPorSemana()` · `cursoActual()` · `comer()` · `imprimir()`
+**Métodos:** `weeklyWorkHours()` · `showWeeklyStudyHours()` · `showCurrentCourse()` · `eat()` · `print()`
 
 ---
 
 ## 🔗 Jerarquía de Herencia
 ```
-IPrintable          IAtendible              IMedico
-    ▲                   ▲                      ▲
-    │                   │                      │
-Characters  ──────► Paciente              Medico
-(superclase)           △        △            △          △
-               PacienteConsulta  PacienteAmbulancia
-                              MedicoEspecialista  MedicoEstudiante
+IPrintable          IAttendable              IDoctor
+    ▲                   ▲                       ▲
+    │                   │                       │
+Characters  ──────► Patient                  Doctor
+(superclase)            △           △            △             △
+              ConsultationPatient  AmbulancePatient
+                                SpecialistDoctor  StudentDoctor
 ```
 
 ---
@@ -199,8 +199,8 @@ Characters  ──────► Paciente              Medico
 | Pilar | Aplicación |
 |-------|------------|
 | **Encapsulamiento** | Todos los atributos son `private`. Acceso exclusivo vía getters y setters |
-| **Herencia** | 3 niveles: `Characters` → `Paciente`/`Medico` → clases concretas |
-| **Polimorfismo** | `imprimir()` produce resultados distintos en cada clase concreta |
+| **Herencia** | 3 niveles: `Characters` → `Patient`/`Doctor` → clases concretas |
+| **Polimorfismo** | `print()` produce resultados distintos en cada clase concreta |
 | **Abstracción** | Clases abstractas e interfaces definen contratos sin implementación |
 
 ---
